@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikasi Hitung Rerata</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #343a40;
+            
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            text-align: left;
+            color: #4CAF50;
+            font-size: 1.1em;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 40%;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result-card {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .result-card h2 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            color: #4CAF50;
+        }
+
+        .result p {
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .tombol-baru {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .tombol-baru button {
+            width: 100%;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>APLIKASI HITUNG RATA-RATA</h1>
+        
+        {% if hasil %}
+            <div class="result-card">
+                <h2>Hasil Hitung Rerata</h2>
+                <div class="result">
+                    {% for i in range(n) %}
+                        <p><strong>Data Ke-{{ i + 1 }}:</strong> {{ hasil['data'][i] }}</p>
+                    {% endfor %}
+                    <p><strong>Rerata:</strong> {{ hasil['jumlah'] }} / {{n}}</p>
+                    <p><strong>Hasil Rerata:</strong> {{ hasil['rerata'] }}</p>
+                </div>
+                <div class="tombol-baru">
+                    <button type="button" onclick="window.location.href='/'">Ulang</button>
+                </div>
+            </div>
+        {% else %}
+            <form action="/proses" method="post" id="hitung-rerata-form">
+                <div class="form-group">
+                    <label for="n">Masukkan Banyak Data:</label><br />
+                    <input type="number" id="n" name="n" required />
+                </div>
+
+                <div id="data-fields">
+                    <!-- Area untuk memasukkan data secara dinamis -->
+                </div>
+
+                <div id="buttons">
+                    <button type="button" onclick="addDataFields()">Tambah Data</button>
+                </div>
+               
+                <input type="submit" value="Hitung Rata-rata" style="display: none;" />
+            </form>
+        {% endif %}
+        
+    </div>
+
+    <script>
+        function addDataFields() {
+            const n = document.getElementById("n").value;
+            const dataFields = document.getElementById("data-fields");
+            dataFields.innerHTML = "";
+
+            for (let i = 1; i <= n; i++) {
+                dataFields.innerHTML += `<div class="form-group">
+                                             <label for="data${i}">Data Ke-${i}:</label><br>
+                                             <input type="number" id="data${i}" name="data${i}" required>
+                                         </div>`;
+            }
+
+            document.getElementById("buttons").innerHTML = `<button type="submit">Hitung Rata-rata</button>`;
+        }
+    </script>
+</body>
+</html>

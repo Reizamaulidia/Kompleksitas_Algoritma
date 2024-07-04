@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Program Bubble Sort</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>PROGRAM BUBBLE SORT</h1>
+        {% if hasil %}
+            <div class="result-card">
+                <h2>Hasil Bubble Sort</h2>
+                <div class="result">
+                    <p><strong>Angka sebelum diurutkan:</strong> {{ hasil['data']|join(', ') }}</p>
+                    <p><strong>Angka setelah diurutkan:</strong> {{ hasil['sesudah_diurutkan']|join(', ') }}</p>
+                </div>
+                <div class="tombol-baru">
+                    <button type="button" onclick="window.location.href='/'">Ulang</button>
+                </div>
+            </div>
+        {% else %}
+        <form action="/proses" method="post" id="bubble-sort-form">
+            <div class="form-group">
+                <label for="n">Masukkan Banyak Data:</label><br>
+                <input type="number" id="n" name="n" required>
+            </div>
+
+            <div id="data-fields">
+                <!-- Area untuk memasukkan data secara dinamis -->
+            </div>
+
+            <button type="button" onclick="addDataField()" id="add-data-button">Tambah Data</button><br><br>
+
+            <input type="submit" value="Urutkan" class="submit-button" style="display:none;" id="sort-button">
+        </form>
+        {% endif %}
+    </div>
+
+    <script>
+        function addDataField() {
+            const n = document.getElementById('n').value;
+            const dataFields = document.getElementById('data-fields');
+            const sortButton = document.getElementById('sort-button');
+            const addButton = document.getElementById('add-data-button');
+            dataFields.innerHTML = '';
+
+            for (let i = 1; i <= n; i++) {
+                const div = document.createElement('div');
+                div.classList.add('form-group');
+                div.innerHTML = `<label for="data${i}">Data Ke-${i}:</label><br>
+                                 <input type="number" id="data${i}" name="data${i}" required>`;
+                dataFields.appendChild(div);
+            }
+
+            sortButton.style.display = 'block';
+            addButton.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

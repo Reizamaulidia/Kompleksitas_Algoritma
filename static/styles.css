@@ -1,0 +1,122 @@
+body {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    text-align: center;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #343a40;
+    
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    text-align: left;
+    color: #4CAF50;
+    font-size: 1.1em;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    font-size: 1em;
+    outline: none;
+}
+
+input[type="number"]:focus {
+    border-color: #18708b;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%;
+    font-size: 1.1em;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+.result-card {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.result-card h2 {
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #4CAF50;
+}
+
+.result p {
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%;
+    font-size: 1.1em;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.tombol-baru {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.tombol-baru button {
+    width: 100%;
+    font-size: 0.9em;
+}
